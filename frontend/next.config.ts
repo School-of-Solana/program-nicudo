@@ -1,17 +1,17 @@
-import type { NextConfig } from 'next'
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  reactStrictMode: true,
   webpack: (config) => {
+    config.resolve = config.resolve || {};
     config.resolve.fallback = {
-      ...config.resolve.fallback,
+      ...(config.resolve.fallback ?? {}),
       fs: false,
-      os: false,
       path: false,
       crypto: false,
-    }
-    return config
+    };
+    return config;
   },
-  transpilePackages: ['@coral-xyz/anchor', '@solana/web3.js'],
-}
+};
 
-export default nextConfig
+export default nextConfig;
